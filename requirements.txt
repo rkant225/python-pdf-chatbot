@@ -5,5 +5,5 @@ llama_index==0.8.8
 openai==0.27.9
 pygame==2.5.1
 PyYAML==6.0.1
-streamlit==1.25.0
+streamlit==1.26.0
 streamlit_authenticator==0.2.3
