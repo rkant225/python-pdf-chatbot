@@ -1,0 +1,17 @@
+cookie:
+  expiry_days: 30
+  key: UNIQUE_KEY_TO_HASH_PASSWORD
+  name: cookie_00
+credentials:
+  usernames:
+    admin:
+      email: admin@admin.com
+      name: Super User
+      password: $2b$12$rKjQjfhf7Agda5IEbLmyD.FfM8np90BhBbCjDBtttSqhRPu9PdtLO
+    rahul:
+      email: rahul@rahul.com
+      name: Rahul Singh
+      password: $2b$12$RiuEzQDVxHe9zcCXnaB3zuTSWvHJb0rY8zlK7sUP7Dh4hWr1a.mR.
+preauthorized:
+  emails:
+  - rahul@rahul.com
