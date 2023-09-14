@@ -13,7 +13,7 @@ with open("style.css") as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 
-# Authenticator
+# =========================== Authenticator ==============================
 with open('./auth.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
@@ -24,6 +24,7 @@ authenticator = stauth.Authenticate(
     config['cookie']['expiry_days'],
     config['preauthorized']
 )
+# =========================== Authenticator ==============================
 
 # Image 6
 file_ = open("./assets/Features.png", "rb") 
@@ -131,26 +132,39 @@ htmlString = f"""
                             </div>
                         </div>
                     </section>
-                    <section>
-                        <div style='display:flex; justify-content:center; align-items:center; gap:1rem;'>
-                            <div>
-                                <img src="data:image/gif;base64,{chatbotBye_image}" height="250" alt="ChatbotFlow_imagea" style='border-radius:.5rem;'></img>
-                            </div>
-                            <div>
-                                <div style='font-size: 2rem; font-weight: 600;'>Contact Us</div>
-                                <p>At RockWell Automation, we're committed to providing you with the best possible support and assistance through our innovative chatbot. However, we understand that there may be times when you need to connect with a human expert for more complex inquiries or personalized assistance. We're here to help in every way we can. Have questions or need assistance beyond what the Chatbot can provide? Our customer support team is here to help. Contact us anytime for personalized assistance.</p>
-                                <ul>
-                                    <li><b>Phone : </b> +1-800-555-ROCK (7625)</li>
-                                    <li><b>Email : </b> support@rockwellautomation.com</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
                 </div>
             """
 
 st.markdown(htmlString, unsafe_allow_html=True)
 
+
+# Register UI
+st.header("Register yourself to chat with our Chatbot")
+if authenticator.register_user('User registration', preauthorization=False):
+    st.success('User registered successfully')
+    with open('./auth.yaml', 'w') as file:
+        yaml.dump(config, file, default_flow_style=False)
+
+
+contactUs = f"""
+                <section>
+                    <div style='display:flex; justify-content:center; align-items:center; gap:1rem;'>
+                        <div>
+                            <img src="data:image/gif;base64,{chatbotBye_image}" height="250" alt="ChatbotFlow_imagea" style='border-radius:.5rem;'></img>
+                        </div>
+                        <div>
+                            <div style='font-size: 2rem; font-weight: 600;'>Contact Us</div>
+                            <p>At RockWell Automation, we're committed to providing you with the best possible support and assistance through our innovative chatbot. However, we understand that there may be times when you need to connect with a human expert for more complex inquiries or personalized assistance. We're here to help in every way we can. Have questions or need assistance beyond what the Chatbot can provide? Our customer support team is here to help. Contact us anytime for personalized assistance.</p>
+                            <ul>
+                                <li><b>Phone : </b> +1-800-555-ROCK (7625)</li>
+                                <li><b>Email : </b> support@rockwellautomation.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            """
+
+st.markdown(contactUs, unsafe_allow_html=True)
 
 # Sidebar
 with st.sidebar:

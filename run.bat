@@ -1,3 +1,3 @@
-set OPENAI_API_KEY=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
+set OPENAI_API_KEY=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
 
 streamlit run Home.py
