@@ -8,9 +8,9 @@ import yaml
 from yaml.loader import SafeLoader
 
 # Text to speech imports
-from gtts import gTTS
-from pygame import mixer
-from googletrans import Translator
+# from gtts import gTTS
+# from pygame import mixer
+# from googletrans import Translator
 
 st.set_page_config(layout="centered")
 ss = st.session_state
@@ -21,8 +21,8 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 # 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 - Rahul S. Key
 
 # Translator INIT
-translator = Translator()
-mixer.init()
+# translator = Translator()
+# mixer.init()
 
 
 
@@ -101,20 +101,20 @@ def renderFileList():
 
 # ======================= Normal User helper methods - START ===================================
 
-languageDictonary = {
-    'English': 'en',
-    'Hindi': 'hi',
-    'Arabic': 'ar',
-    'Assamese': 'as',
-    'Bengali': 'bn',
-    'Chinese': 'zh',
-    'French': 'fr',
-    'German': 'de',
-    'Gujarati': 'gu',
-    'Kannada': 'kn',
-    'Tamil': 'ta',
-    'Telugu': 'te',
-}
+# languageDictonary = {
+#     'English': 'en',
+#     'Hindi': 'hi',
+#     'Arabic': 'ar',
+#     'Assamese': 'as',
+#     'Bengali': 'bn',
+#     'Chinese': 'zh',
+#     'French': 'fr',
+#     'German': 'de',
+#     'Gujarati': 'gu',
+#     'Kannada': 'kn',
+#     'Tamil': 'ta',
+#     'Telugu': 'te',
+# }
 
 # Set initial message
 if "messages" not in st.session_state.keys():
@@ -122,25 +122,25 @@ if "messages" not in st.session_state.keys():
 
 
 # Helper method to generate audio and play it
-def createAudioFromTextAndPlayIt(text):
+# def createAudioFromTextAndPlayIt(text):
 
-    # Remove the old audio file if it exists
-    if os.path.isfile('assistant.mp3'):
-        mixer.music.unload()
-        os.remove("assistant.mp3")
+#     # Remove the old audio file if it exists
+#     if os.path.isfile('assistant.mp3'):
+#         mixer.music.unload()
+#         os.remove("assistant.mp3")
 
-    audio = gTTS(text=text, lang=languageDictonary[st.session_state.assistant_language])
-    audio.save("assistant.mp3")
-    mixer.music.load("assistant.mp3")
-    mixer.music.play()
+#     audio = gTTS(text=text, lang=languageDictonary[st.session_state.assistant_language])
+#     audio.save("assistant.mp3")
+#     mixer.music.load("assistant.mp3")
+#     mixer.music.play()
 
-    # Uncomment below "while" loop if you want to wait for audio to be finished.
-    # while mixer.music.get_busy():
-    #     continue
+#     # Uncomment below "while" loop if you want to wait for audio to be finished.
+#     # while mixer.music.get_busy():
+#     #     continue
 
 
-def stopAudioPlayback():
-    mixer.music.stop()
+# def stopAudioPlayback():
+#     mixer.music.stop()
 
 name, authentication_status, username = authenticator.login('RockWell Automation ChatBot Login', 'main')
 
@@ -211,21 +211,22 @@ if st.session_state.selectedUi == "Chatbot":
                 query_engine = loaded_index.as_query_engine()
                 eng_response = query_engine.query(ss['query']).response # English
                 
-                translated_text = translator.translate(eng_response, dest=languageDictonary[st.session_state.assistant_language]) # Translated
-                response = translated_text.text
-                st.write(response)
+                # translated_text = translator.translate(eng_response, dest=languageDictonary[st.session_state.assistant_language]) # Translated
+                # response = translated_text.text
+                # st.write(response)
+                st.write(eng_response)
 
-        message = {"role": "assistant", "content": response}
+        message = {"role": "assistant", "content": eng_response}
         st.session_state.messages.append(message)
 
         # Play the sound
-        if st.session_state.with_text_to_speach:
-            createAudioFromTextAndPlayIt(response)
+        # if st.session_state.with_text_to_speach:
+        #     createAudioFromTextAndPlayIt(response)
 
     # Delete the mp3 file
-    if not mixer.music.get_busy() and os.path.isfile('assistant.mp3'):
-        mixer.music.unload()
-        os.remove("assistant.mp3")
+    # if not mixer.music.get_busy() and os.path.isfile('assistant.mp3'):
+        # mixer.music.unload()
+        # os.remove("assistant.mp3")
 
 
 
