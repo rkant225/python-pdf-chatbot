@@ -177,10 +177,10 @@ with st.sidebar:
         selectedUi_options.append("Admin UI")
     st.radio("Selected UI", selectedUi_options ,key="selectedUi",horizontal=False)
 
-    st.selectbox(label="Text output and playback language", options=['English', 'Hindi', 'Arabic', 'Assamese', 'Bengali', 'Chinese', 'French', 'German', 'Gujarati', 'Kannada', 'Tamil', 'Telugu'], key="assistant_language")
+    # st.selectbox(label="Text output and playback language", options=['English', 'Hindi', 'Arabic', 'Assamese', 'Bengali', 'Chinese', 'French', 'German', 'Gujarati', 'Kannada', 'Tamil', 'Telugu'], key="assistant_language")
 
-    st.checkbox('Do you want your assistant to read out the answers?', key="with_text_to_speach")
-    st.button('Stop assistant playback', on_click=stopAudioPlayback, disabled=not st.session_state.with_text_to_speach)
+    # st.checkbox('Do you want your assistant to read out the answers?', key="with_text_to_speach")
+    # st.button('Stop assistant playback', on_click=stopAudioPlayback, disabled=not st.session_state.with_text_to_speach)
 
 # Chatbot UI
 if st.session_state.selectedUi == "Chatbot":
